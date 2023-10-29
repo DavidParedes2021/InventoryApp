@@ -1,9 +1,8 @@
 package com.example.secondproject
 
-import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import com.example.secondproject.databinding.ActivityAddBinding
 
 class AddActivity : AppCompatActivity() {
@@ -19,10 +18,14 @@ class AddActivity : AppCompatActivity() {
             val price = binding.PriceInput.editText?.text?.toString() ?: ""
             val quantity = binding.QuantityInput.editText?.text?.toString() ?: ""
 
-            val db_helper = SQLiteHelper(context = applicationContext)
-            db_helper.insert(name, price.toDouble(), quantity.toInt())
+            if (name.isBlank() || price.isBlank() || quantity.isBlank()) {
+                Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_LONG).show()
+            } else {
+                val db_helper = SQLiteHelper(context = applicationContext)
+                db_helper.insert(name, price.toDouble(), quantity.toInt())
 
-            finish()
+                finish()
+            }
         }
     }
 }
