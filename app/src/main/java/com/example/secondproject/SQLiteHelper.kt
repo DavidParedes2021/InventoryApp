@@ -65,14 +65,37 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         data.put(DBContract.FeedEntry.COLUMN_NAME_QUANTITY, quantity)
 
         val db = this.writableDatabase
-        db.update("products", data, "id=?", arrayOf(productId.toString()))
+        db.update(DBContract.FeedEntry.TABLE_NAME , data, "id=?", arrayOf(productId.toString()))
         db.close()
     }
 
     fun delete(productId: Int) {
         val db = this.writableDatabase
-        db.delete("products", "id=?", arrayOf(productId.toString()))
+        db.delete(DBContract.FeedEntry.TABLE_NAME , "id=?", arrayOf(productId.toString()))
         db.close()
+    }
+
+    fun getProducts(): List<Product> {
+        val productsList = mutableListOf<Product>()
+        val db: SQLiteDatabase = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM products", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(0)
+                val name = cursor.getString(1)
+                val price = cursor.getDouble(2)
+                val quantity = cursor.getInt(3)
+
+                val product = Product(id, name, price, quantity)
+                productsList.add(product)
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+
+        return productsList
     }
 
     companion object {
