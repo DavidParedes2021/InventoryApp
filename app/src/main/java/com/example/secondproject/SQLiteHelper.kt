@@ -58,6 +58,17 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         onUpgrade(db, oldVersion, newVersion)
     }
 
+    fun insert(name: String, price:Double, quantity: Int) {
+        val values = ContentValues().apply {
+            put(DBContract.FeedEntry.COLUMN_NAME_NAME, name)
+            put(DBContract.FeedEntry.COLUMN_NAME_PRICE, price)
+            put(DBContract.FeedEntry.COLUMN_NAME_QUANTITY, quantity)
+        }
+        val db = this.writableDatabase
+        db?.insert(DBContract.FeedEntry.TABLE_NAME, null, values)
+        db.close()
+    }
+
     fun update(productId: Int, name: String, price: Double, quantity: Int) {
         val data = ContentValues()
         data.put(DBContract.FeedEntry.COLUMN_NAME_NAME, name)
