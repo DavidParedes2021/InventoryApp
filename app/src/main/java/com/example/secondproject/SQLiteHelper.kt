@@ -1,5 +1,6 @@
 package com.example.secondproject
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -37,7 +38,8 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         "CREATE TABLE ${DBContract.FeedEntry.TABLE_NAME} (" +
                 "${BaseColumns._ID} INTEGER PRIMARY KEY," +
                 "${DBContract.FeedEntry.COLUMN_NAME_NAME} TEXT," +
-                "${DBContract.FeedEntry.COLUMN_NAME_PRICE} INTEGER)"
+                "${DBContract.FeedEntry.COLUMN_NAME_PRICE} DOUBLE," +
+                "${DBContract.FeedEntry.COLUMN_NAME_QUANTITY} INTEGER)"
 
     private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${DBContract.FeedEntry.TABLE_NAME}"
 
@@ -54,6 +56,23 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
 
     override fun onDowngrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         onUpgrade(db, oldVersion, newVersion)
+    }
+
+    fun update(productId: Int, name: String, price: Double, quantity: Int) {
+        val data = ContentValues()
+        data.put(DBContract.FeedEntry.COLUMN_NAME_NAME, name)
+        data.put(DBContract.FeedEntry.COLUMN_NAME_PRICE, price)
+        data.put(DBContract.FeedEntry.COLUMN_NAME_QUANTITY, quantity)
+
+        val db = this.writableDatabase
+        db.update("products", data, "id=?", arrayOf(productId.toString()))
+        db.close()
+    }
+
+    fun delete(productId: Int) {
+        val db = this.writableDatabase
+        db.delete("products", "id=?", arrayOf(productId.toString()))
+        db.close()
     }
 
     companion object {

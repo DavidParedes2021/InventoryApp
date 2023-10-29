@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, AddActivity::class.java))
 
         binding.EditButton.setOnClickListener {
-            startActivity(Intent(this, EditButton::class.java))
+            startActivity(Intent(this, EditActivity::class.java))
         }
         }
     }

@@ -7,5 +7,6 @@ object DBContract {
         const val TABLE_NAME = "examen2"
         const val COLUMN_NAME_NAME = "name"
         const val COLUMN_NAME_PRICE = "price"
+        const val COLUMN_NAME_QUANTITY = "quantity"
     }
 }
