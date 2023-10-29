@@ -1,4 +1,4 @@
-package com.example.examen2_take2
+package com.example.secondproject
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

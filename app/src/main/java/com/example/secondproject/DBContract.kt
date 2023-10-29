@@ -1,4 +1,4 @@
-package com.example.examen2_take2
+package com.example.secondproject
 import android.provider.BaseColumns
 
 object DBContract {
