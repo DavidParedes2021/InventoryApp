@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        sqLiteHelper = SQLiteHelper(context = applicationContext)
 
         val productsList = sqLiteHelper.getProducts()
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
