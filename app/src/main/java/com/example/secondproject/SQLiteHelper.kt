@@ -88,7 +88,7 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
 
     fun getProducts(): List<Product> {
         val productsList = mutableListOf<Product>()
-        val db: SQLiteDatabase = readableDatabase
+        val db: SQLiteDatabase = this.readableDatabase
         val cursor = db.rawQuery("SELECT * FROM products", null)
 
         if (cursor.moveToFirst()) {
