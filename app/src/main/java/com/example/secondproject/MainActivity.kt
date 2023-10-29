@@ -12,12 +12,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.Addbutton.setOnClickListener{
+
+        binding.Addbutton.setOnClickListener {
             startActivity(Intent(this, AddActivity::class.java))
+        }
 
         binding.EditButton.setOnClickListener {
             startActivity(Intent(this, EditActivity::class.java))
-        }
         }
     }
 }
