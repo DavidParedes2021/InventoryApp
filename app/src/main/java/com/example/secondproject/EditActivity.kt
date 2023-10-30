@@ -30,15 +30,11 @@ class EditActivity : AppCompatActivity() {
             if (name.isBlank() || price.isBlank() || quantity.isBlank()){
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_LONG).show()
             } else {
-
-
-
-            val db_helper = SQLiteHelper(context = applicationContext)
-
-            db_helper.update(productId, name, price.toDouble(), quantity.toInt())
-            finish()
+                SQLiteHelper(context = applicationContext).apply {
+                    update(productId, name, price.toDouble(), quantity.toInt())
+                }
+                finish()
             }
         }
-
     }
 }

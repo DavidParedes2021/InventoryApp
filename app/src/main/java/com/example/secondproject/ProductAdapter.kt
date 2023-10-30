@@ -10,8 +10,6 @@ import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 
 class ProductAdapter(private var productList: List<Product>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
-
-
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val productName: TextView = itemView.findViewById(R.id.productName)
         val productPrice: TextView = itemView.findViewById(R.id.productPrice)
@@ -42,7 +40,6 @@ class ProductAdapter(private var productList: List<Product>) : RecyclerView.Adap
                 putExtra("productPrice", product.price) // Pass the product price
                 putExtra("productQuantity", product.quantity) // Pass the product quantity
             }
-
             holder.itemView.context.startActivity(intent)
         }
 

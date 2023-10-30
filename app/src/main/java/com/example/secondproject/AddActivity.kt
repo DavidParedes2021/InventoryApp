@@ -12,7 +12,6 @@ class AddActivity : AppCompatActivity() {
         binding = ActivityAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.SaveButton.setOnClickListener {
             val name = binding.NameInput.editText?.text?.toString() ?: ""
             val price = binding.PriceInput.editText?.text?.toString() ?: ""
@@ -21,8 +20,9 @@ class AddActivity : AppCompatActivity() {
             if (name.isBlank() || price.isBlank() || quantity.isBlank()) {
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_LONG).show()
             } else {
-                val db_helper = SQLiteHelper(context = applicationContext)
-                db_helper.insert(name, price.toDouble(), quantity.toInt())
+                SQLiteHelper(context = applicationContext).apply {
+                    insert(name, price.toDouble(), quantity.toInt())
+                }
 
                 finish()
             }

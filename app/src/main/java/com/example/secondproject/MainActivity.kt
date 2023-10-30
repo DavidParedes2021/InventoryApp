@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.secondproject.databinding.ActivityMainBinding
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var sqLiteHelper: SQLiteHelper
@@ -26,9 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.addProductBtn.setOnClickListener {
             startActivity(Intent(this, AddActivity::class.java))
-
         }
-
     }
 
     override fun onResume() {
