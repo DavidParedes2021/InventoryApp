@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.addProductBtn.setOnClickListener{
             startActivity(Intent(this, AddActivity::class.java))
+
         }
+        binding.EditProductbutton.setOnClickListener {
+            startActivity(Intent(this, EditActivity::class.java))
+        }
+
     }
 }

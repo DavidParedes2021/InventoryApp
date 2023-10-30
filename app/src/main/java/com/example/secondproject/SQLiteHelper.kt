@@ -112,6 +112,6 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
     companion object {
         // If you change the database schema, you must increment the database version.
         const val DATABASE_VERSION = 1
-        const val DATABASE_NAME = "Examen2.db"
+        const val DATABASE_NAME = "Proyecto2.db"
     }
 }
