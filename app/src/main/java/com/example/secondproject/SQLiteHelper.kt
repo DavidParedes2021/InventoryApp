@@ -76,13 +76,13 @@ class SQLiteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         data.put(DBContract.FeedEntry.COLUMN_NAME_QUANTITY, quantity)
 
         val db = this.writableDatabase
-        db.update(DBContract.FeedEntry.TABLE_NAME , data, "id=?", arrayOf(productId.toString()))
+        db.update(DBContract.FeedEntry.TABLE_NAME, data, "${BaseColumns._ID}=?", arrayOf(productId.toString()))
         db.close()
     }
 
     fun delete(productId: Int) {
         val db = this.writableDatabase
-        db.delete(DBContract.FeedEntry.TABLE_NAME , "id=?", arrayOf(productId.toString()))
+        db.delete(DBContract.FeedEntry.TABLE_NAME, "${BaseColumns._ID}=?", arrayOf(productId.toString()))
         db.close()
     }
 

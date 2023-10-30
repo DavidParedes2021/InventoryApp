@@ -72,6 +72,11 @@ class ProductAdapter(private var productList: List<Product>) : RecyclerView.Adap
         }
     }
 
+    fun updateProductList(updatedProductList: List<Product>) {
+        productList = updatedProductList
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount(): Int {
         return productList.size
     }
